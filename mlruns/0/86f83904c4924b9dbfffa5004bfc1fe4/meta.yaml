@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/bleye/Documents/GitHub/projet_5/mlruns/0/86f83904c4924b9dbfffa5004bfc1fe4/artifacts
+end_time: 1725629546963
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 86f83904c4924b9dbfffa5004bfc1fe4
+run_name: bold-hound-556
+run_uuid: 86f83904c4924b9dbfffa5004bfc1fe4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1725629546926
+status: 4
+tags: []
+user_id: bleye

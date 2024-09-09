@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/bleye/Documents/GitHub/projet_5/mlruns/0/006b304141064878b5403560fb074c8f/artifacts
+end_time: 1725633608317
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 006b304141064878b5403560fb074c8f
+run_name: adventurous-pug-577
+run_uuid: 006b304141064878b5403560fb074c8f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1725633607984
+status: 3
+tags: []
+user_id: bleye

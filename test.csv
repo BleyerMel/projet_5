@@ -1,3 +1,0 @@
-Title,Body,Tags,Id,Score,ViewCount,FavoriteCount,AnswerCount
-"What's a good C decompiler?","<p>I am searching for a decompiler for a C program. The binary is a 32-bit x86 Linux executable. Objdump works fine, so basically I am searching for something which attempts to reconstruct the C source from the asm source.</p>
-","<c><linux><reverse-engineering><decompiling><assembly>","193896","89","193756","32","5"

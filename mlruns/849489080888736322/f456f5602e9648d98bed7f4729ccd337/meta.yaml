@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/849489080888736322/f456f5602e9648d98bed7f4729ccd337/artifacts
+end_time: 1726218832206
+entry_point_name: ''
+experiment_id: '849489080888736322'
+lifecycle_stage: active
+run_id: f456f5602e9648d98bed7f4729ccd337
+run_name: nebulous-vole-241
+run_uuid: f456f5602e9648d98bed7f4729ccd337
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726218729961
+status: 3
+tags: []
+user_id: bleye

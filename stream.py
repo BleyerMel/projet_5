@@ -1,64 +1,36 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
-from tensorflow.keras.models import load_model
+import requests
 
-
-# Charger le modèle
-model = load_model('tags_predicts.h5')
+# URL de l'API FastAPI
+API_URL = "http://127.0.0.1:8000/predict/"
 
 st.title('Prediction de tags automatique')
 
-st.write("Cette application utilise l'intelligence artificielle pour suggérer des tags en fonction de la questions que vous entrez.")
+st.write("Cette application utilise l'intelligence artificielle pour suggérer des tags en fonction de la question que vous entrez.")
 
-# st.image("ia.gif", use_column_width=True)
+# Fonction pour appeler l'API FastAPI
+def get_prediction(title, body):
+    try:
+        response = requests.post(API_URL, json={"text": title + ' ' + body})
+        response.raise_for_status()  # Lève une exception pour les réponses d'erreur HTTP
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        st.error(f"Erreur lors de l'appel à l'API : {e}")
+        return {"prediction": "Erreur lors de l'appel à l'API"}
 
-
-# Exemple de fonction pour générer des tags grace à l'ia
-def generate_tags(text):
-
-    # Exemple simple de génération de tags basé sur la présence de certains mots
-    tags = []
-    if "machine learning" in text.lower():
-        tags.append("Machine Learning")
-    if "python" in text.lower():
-        tags.append("Python")
-    if "data" in text.lower():
-        tags.append("Data Science")
-    if "web" in text.lower():
-        tags.append("Web Development")
-    if "ai" in text.lower():
-        tags.append("Artificial Intelligence")
-    return tags
-
-
+# Zone de texte pour le titre
+title = st.text_area("Title", "")
 
 # Zone de texte pour l'entrée utilisateur
-user_input = st.text_area("Tapez un paragraphe ou une phrase ci-dessous pour obtenir des suggestions de tags pertinents.")
-
-# Générer des tags automatiques en fonction de l'entrée
-if user_input:
-    tags = generate_tags(user_input)
-    st.write("Tags suggérés:")
-    st.write(", ".join(tags) if tags else "Aucun tag suggéré.")
-
-
-if user_input:
-    tags = generate_tags(user_input)
-    selected_tags = st.multiselect("Sélectionnez ou ajustez les tags proposés :", tags, tags)
-    st.write("Tags sélectionnés : ", ", ".join(selected_tags) if selected_tags else "Aucun tag sélectionné.")
-
-
-if user_input:
-    st.write(f"**Nombre de mots :** {len(user_input.split())}")
-    st.write(f"**Nombre de caractères :** {len(user_input)}")
-
+body = st.text_area("Body of texte", "")
 
 if st.button("Générer les tags"):
-    if user_input:
-        tags = generate_tags(user_input)
-        st.write("Tags suggérés : ", ", ".join(tags) if tags else "Aucun tag suggéré.")
-
+    if title and body:
+        prediction = get_prediction(title, body)
+        st.write("Tags suggérés :")
+        st.write(prediction.get("prediction", "Aucun tag suggéré."))
+    else:
+        st.warning("Veuillez entrer un titre et un corps du texte.")
 
 st.sidebar.title("Options")
 option = st.sidebar.selectbox("Choisissez un modèle :", ("Modèle Basique", "Modèle Avancé"))

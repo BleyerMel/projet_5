@@ -1,0 +1,42 @@
+name: Test FastAPI API
+
+# excécution du workflow
+on:
+  push:
+    branches: 
+      - main
+  pull_request:
+    branches: 
+      - main
+
+# Définir les jobs à exécuter
+jobs:
+  test-api:
+    runs-on: ubuntu-latest sur une machine Linux Ubuntu
+
+    steps:
+    # Étape 1 : Cloner le code du dépôt
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # Étape 2 : Installer Python version 3.9
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+
+    # Étape 3 : Installer les dépendances Python
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    # Étape 4 : Démarrer le serveur FastAPI
+    - name: Start FastAPI server
+      run: |
+        nohup uvicorn app:app --host 0.0.0.0 --port 8000 &
+
+    # Étape 5 : Exécuter les tests
+    - name: Test API
+      run: |
+        pytest

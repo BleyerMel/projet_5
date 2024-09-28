@@ -27,7 +27,7 @@ def get_prediction(title, body):
 # Zone de texte pour le titre
 title = st.text_area("Titre", "")
 
-# Zone de texte pour l'entrée utilisateur (corps de texte)
+# Zone de texte pour l'imput utilisateur (Body)
 body = st.text_area("Corps du texte", "")
 
 if st.button("Générer les tags"):
